@@ -1,0 +1,86 @@
+﻿<Window Style="{StaticResource TodoStyle}" x:Class="ToDoProject.ListenAnsicht"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ToDoProject"
+        mc:Ignorable="d"
+        Title="ListenAnsicht" Height="450" Width="800">
+    <DockPanel Margin="0,0,0,0">
+
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem Content="Liste" TextElement.Foreground="White" Background="#FF64BD94"  HorizontalContentAlignment="Center"></StatusBarItem>
+        </StatusBar>
+        <StackPanel x:Name="leftPanel" Width="175px" Background="#FF64BD94">
+
+        </StackPanel>
+
+        <StackPanel x:Name="contentPanel" Width="442px">
+
+            <Border Height="100" Width="442" Background="white" Panel.ZIndex="1">
+                <Border.BitmapEffect>
+                    <DropShadowBitmapEffect Color="Black" Direction="270" ShadowDepth="1" Opacity="0.2" Softness="1" />
+                </Border.BitmapEffect>
+                <StackPanel Margin="10" VerticalAlignment="Center">
+
+                    <Grid Width="350px" Height="30px" TextElement.FontWeight="Black">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="50px"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0">
+                            <TextBlock FontSize="18px" Foreground="#FF64BD94" Text="{Binding Statistic}"></TextBlock>
+                        </StackPanel>
+
+                        <Button Click="Button_Click" Height="25px" Grid.Column="1" Grid.Row="0"  Background="#FF64BD94" TextElement.FontWeight="Black" TextElement.Foreground="white" FontSize="9">ADD</Button>
+
+                    </Grid>
+
+                </StackPanel>
+            </Border>
+
+            <ScrollViewer Width="437px" Height="275" VerticalScrollBarVisibility="Auto">
+                <StackPanel Margin="20px">
+                    <ListBox ItemsSource="{Binding aktuellesToDo.Aufgaben}" Width="400px" ScrollViewer.HorizontalScrollBarVisibility="Hidden" HorizontalAlignment="Center" BorderThickness="0">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Done}" Margin="0,20,0,0" >
+                                    <StackPanel Margin="10,-15,0,0" VerticalAlignment="Center">
+                                        <GroupBox Header="{Binding Topic}" TextElement.FontSize="14px" TextElement.FontWeight="Bold" Foreground="#FF64BD94" Padding="3px" Margin="5px">
+                                            <Grid TextElement.FontWeight="Black">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="280px"></ColumnDefinition>
+                                                    <ColumnDefinition Width="40px"></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition></RowDefinition>
+                                                </Grid.RowDefinitions>
+                                                <TextBlock Text="{Binding Inhalt}" FontSize="12px" FontWeight="Normal" TextWrapping="Wrap" Grid.Column="0" Grid.Row="0" Padding="4px"></TextBlock>
+                                                <Image Height="20px" Grid.Column="1" Grid.Row="0" Source="Icons/04.png" Margin="0,-5,0,0"></Image>
+                                            </Grid>
+                                        </GroupBox>
+                                    </StackPanel>
+                                </CheckBox>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </ScrollViewer>
+        </StackPanel>
+        <StackPanel x:Name="rightPanel" Width="175px" Background="#FF64BD94">
+
+            <Ellipse Height="90" Width="90" Margin="20px">
+                <Ellipse.Fill>
+                    <ImageBrush ImageSource="{Binding aktuellesToDo.Bild}"/>
+                </Ellipse.Fill>
+            </Ellipse>
+            <StackPanel Width="140px" TextElement.Foreground="White">
+                <TextBlock Text="{Binding aktuellesToDo.Name}" HorizontalAlignment="Center" TextElement.FontWeight="Black" Padding="4px"></TextBlock>
+            </StackPanel>
+            
+        </StackPanel>
+    </DockPanel>
+</Window>

@@ -1,0 +1,69 @@
+﻿<Window Style="{StaticResource TodoStyle}" x:Class="ToDoProject.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ToDoProject"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <DockPanel Margin="0,0,0,0" Background="#FF64BD94">
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem Content="MainView" TextElement.Foreground="White" Background="#FF64BD94"  HorizontalContentAlignment="Center" FontFamily="72"></StatusBarItem>
+        </StatusBar>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Header="Alle Listen ansehen" Click="Button_AlleListenAnsehen">
+                    <MenuItem.Icon>
+                        <Image Source="Icons/03.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Exit" />
+            </MenuItem>
+            <MenuItem Header="_Tools">
+                <MenuItem Header="Neue Liste anlegen" Click="Button_NeueListeAnlegen">
+                    <MenuItem.Icon>
+                        <Image Source="Icons/00.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+
+
+        <StackPanel x:Name="contentPanel" Width="700px" Background="#FF64BD94" Margin="0,18,0,0">
+
+            <Border Height="355px" Width="442" Background="white" Panel.ZIndex="1">
+                <Border.BitmapEffect>
+                    <DropShadowBitmapEffect Color="Black" Direction="270" ShadowDepth="1" Opacity="0.2" Softness="1" />
+                </Border.BitmapEffect>
+
+                <StackPanel Margin="10" VerticalAlignment="Center" >
+                    <ListBox ItemsSource="{Binding AllToDoLists}" SelectedItem="{Binding SelectedToDoList}" Width="400px" ScrollViewer.HorizontalScrollBarVisibility="Visible" HorizontalAlignment="Center">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel IsItemsHost="True" />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Width="120px"  HorizontalAlignment="Center" >
+                                    <Ellipse Height="90" Width="90" Margin="0,20,0,20">
+                                        <Ellipse.Fill>
+                                            <ImageBrush ImageSource="{Binding Bild}"/>
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                    <TextBlock Text="{Binding Name}" Width="110px" TextAlignment="Center" TextWrapping="Wrap" TextElement.Foreground="#FF64BD94" TextElement.FontWeight="Black" Padding="4px" Margin="0,0,0,20"></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Click="Button_ListeAnzeigen" Height="25px" Width="100px" Margin="0,20,25,0" Background="#FF64BD94" TextElement.FontWeight="Black" TextElement.Foreground="white" FontSize="9">LISTE ANZEIGEN</Button>
+                        <Button Height="25px" Width="100px"  Margin="25,20,0,0" Background="white" TextElement.FontWeight="Black" TextElement.Foreground="#FF64BD94" FontSize="9">LISTE LÖSCHEN</Button>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </DockPanel>
+</Window>
+

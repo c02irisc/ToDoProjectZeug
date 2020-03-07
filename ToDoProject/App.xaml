@@ -1,0 +1,13 @@
+﻿<Application x:Class="ToDoProject.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:ToDoProject"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <Style x:Key="TodoStyle" TargetType="{x:Type Control}">
+            <Setter Property="Foreground" Value="#FFC52B0F" />
+            <Setter Property="FontFamily" Value="72" />
+            <Setter Property="FontStyle" Value="Normal" />
+        </Style>
+    </Application.Resources>
+</Application>
