@@ -17,6 +17,16 @@ namespace ToDoProject.ViewModels
 
         public ObservableCollection<Aufgabe> Aufgaben { get; set; }
 
+        public ListenAnsichtViewModel()
+        {
+            Aufgaben = new ObservableCollection<Aufgabe>();
+
+            foreach (var item in ctx.Aufgaben.Include("ParentToDoList"))
+            {
+                Aufgaben.Add(item);
+            }
+        }
+
         public String Statistic
         {
             get
@@ -44,6 +54,11 @@ namespace ToDoProject.ViewModels
 
         public int DoneCount()
         {
+
+            if (aktuellesToDo.Aufgaben == null)
+            {
+                return 0;
+            }
             return aktuellesToDo.Aufgaben.Where(g => g.Done == true).ToList().Count;
         }
 

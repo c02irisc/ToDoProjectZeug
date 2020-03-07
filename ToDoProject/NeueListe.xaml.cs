@@ -24,17 +24,14 @@ namespace ToDoProject
         public NeueListe()
         {
             InitializeComponent();
-            NeueListeViewModel vm = new NeueListeViewModel();
 
-            this.DataContext = vm;
         }
 
         private void Button_BildLaden(object sender, RoutedEventArgs e)
         {
             ChooseBild fenster = new ChooseBild();
 
-            // An dieser Stelle die Bilderliste mitgeben?
-            // an anderer stelle das gewählt bild zurückgeben.
+            fenster.DataContext = (NeueListeViewModel)this.DataContext;
 
             fenster.ShowDialog();
         }
@@ -42,28 +39,38 @@ namespace ToDoProject
 
         private void Button_LoadListeNeu(object sender, RoutedEventArgs e)
         {
+            // SAVE THE NEW GENERATED LIST
+
+            var vm = (MainWindowViewModel)Application.Current.MainWindow.DataContext;
+            var newListVM = (NeueListeViewModel)this.DataContext;
+
+            ToDoList erstellteListe = new ToDoList();
+            erstellteListe.Name = newListVM.neueListe.Name.Equals("") ? "Kein Name eingegeben" : newListVM.neueListe.Name;
+
+            erstellteListe.Bild = newListVM.neueListe.Bild;
+            erstellteListe.Aufgaben = newListVM.neueListe.Aufgaben;
+
+            // DB Save
+            vm.AddNewToDoList(erstellteListe);
+            // Liste im Main wird upgedated
+            vm.AllToDoLists.Add(erstellteListe);
+            // Selected Element wird übergeben
+            vm.SelectedToDoList = erstellteListe;
+
+
+            // OPEN IN NEW WINDOW
             ListenAnsicht fenster = new ListenAnsicht();
+            ListenAnsichtViewModel viewModel = new ListenAnsichtViewModel();
 
-            var vm = (NeueListeViewModel)this.DataContext; // takes the Info from vwmodel
+            // Ausgewählte Liste übergeben
+            viewModel.aktuellesToDo = vm.SelectedToDoList;
+            fenster.DataContext = viewModel;
 
-            ToDoList erstellteListe  = new ToDoList();
-            erstellteListe.Name = vm.neueListe.Name;
-            erstellteListe.Bild = vm.neueListe.Bild;
-            erstellteListe.Aufgaben = vm.neueListe.Aufgaben;
-
-
-
-            // vm.AddAufgabe(erstellteAufgabe);
-
-            vm.AddListe(erstellteListe);
-
+            // TODO: Frage ob das hier notwendig ist?
+            viewModel.FillAufgabenliste();
 
             this.Close();
-
-            // Take info from Todolist and give it to new vm in aktuelle Liste in neuerTask
             fenster.ShowDialog();
-
-
         }
 
 

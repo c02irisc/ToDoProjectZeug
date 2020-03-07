@@ -21,14 +21,14 @@
                 <StackPanel Margin="10" VerticalAlignment="Center" >
                     <Ellipse Height="90" Width="90" Margin="20px">
                         <Ellipse.Fill>
-                            <ImageBrush ImageSource="Pics/029-native-american.png"/>
+                            <ImageBrush ImageSource="{Binding neueListe.Bild}"/>
                         </Ellipse.Fill>
                     </Ellipse>
                     <Button Click="Button_BildLaden" Height="25px" Width="132px"  Margin="0,0,0,20" Background="white" TextElement.FontWeight="Black" TextElement.Foreground="#FF64BD94" FontSize="9">BILD ÄNDERN</Button>
 
                     <StackPanel x:Name="userInfo" Width="140px" TextElement.Foreground="#FF64BD94">
                         <TextBlock HorizontalAlignment="Center" TextElement.FontWeight="Black" Padding="4px">Name der Liste</TextBlock>
-                        <TextBox Text="{Binding ToDoList.Name}" Height="25px" Margin="5"></TextBox>
+                        <TextBox Text="{Binding neueListe.Name}" Height="25px" Margin="5"></TextBox>
                         <Button Click="Button_LoadListeNeu" Height="25px" Width="100px" Margin="0,20,0,0" Background="#FF64BD94" TextElement.FontWeight="Black" TextElement.Foreground="white" FontSize="9">LISTE ERSTELLEN</Button>
                     </StackPanel>
                 </StackPanel>

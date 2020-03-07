@@ -23,13 +23,14 @@ namespace ToDoProject
     public partial class NeuerTask : Window
     {
 
+
         public ToDoList aktuelleListe { get; set; }
 
         public NeuerTask()
         {
             InitializeComponent();
 
-            NeuerTaskViewModel vm = new NeuerTaskViewModel();
+            NeuerTaskViewModel vm = new NeuerTaskViewModel(); // ev aus CTOR?
 
             this.DataContext = vm;
         }

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ToDoProject.Models;
+using ToDoProject.ViewModels;
 
 namespace ToDoProject
 {
@@ -20,6 +21,8 @@ namespace ToDoProject
     /// </summary>
     public partial class ChooseBild : Window
     {
+
+        
         public ChooseBild()
         {
             InitializeComponent();
@@ -27,18 +30,8 @@ namespace ToDoProject
 
         private void Button_BildSpeichern(object sender, RoutedEventArgs e)
         {
-            var aufgabe = (Aufgabe)this.DataContext;
-
-            /*
-            // Verbindung mit Datenkontext "main"
-            var vm = (MainWindowViewModel)Application.Current.MainWindow.DataContext;
-
-            // in DB Speichern
-            vm.AddGeschenk(geschenk);
-
-            // Zur Liste hinzufügen ObservableCollection
-            vm.Geschenke.Add(geschenk);
-            */
+            var cacheVM = (NeueListeViewModel)this.DataContext;
+            cacheVM.neueListe.Bild = cacheVM.SelectedBild;
 
             this.Close();
 

@@ -59,7 +59,7 @@
                     </ListBox>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <Button Click="Button_ListeAnzeigen" Height="25px" Width="100px" Margin="0,20,25,0" Background="#FF64BD94" TextElement.FontWeight="Black" TextElement.Foreground="white" FontSize="9">LISTE ANZEIGEN</Button>
-                        <Button Height="25px" Width="100px"  Margin="25,20,0,0" Background="white" TextElement.FontWeight="Black" TextElement.Foreground="#FF64BD94" FontSize="9">LISTE LÖSCHEN</Button>
+                        <Button Click="Button_ListeLoeschen" Height="25px" Width="100px"  Margin="25,20,0,0" Background="white" TextElement.FontWeight="Black" TextElement.Foreground="#FF64BD94" FontSize="9">LISTE LÖSCHEN</Button>
                     </StackPanel>
                 </StackPanel>
             </Border>

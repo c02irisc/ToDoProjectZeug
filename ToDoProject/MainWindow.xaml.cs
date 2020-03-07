@@ -45,6 +45,8 @@ namespace ToDoProject
             viewModel.aktuellesToDo = vm.SelectedToDoList;
 
             fenster.DataContext = viewModel;
+
+            // TODO: Frage ob das hier notwendig ist?
             viewModel.FillAufgabenliste();
 
             fenster.ShowDialog();
@@ -60,18 +62,28 @@ namespace ToDoProject
         private void Button_NeueListeAnlegen(object sender, RoutedEventArgs e)
         {
             NeueListe fenster = new NeueListe();
-
             NeueListeViewModel viewModel = new NeueListeViewModel();
 
-            ToDoList neueToDoListe = new ToDoList()
+            ToDoList cache = new ToDoList()
             {
-                Name = "NotSpecified"
+                Name = "",
+                Bild = "Pics/011.png",
+                Aufgaben = new List<Aufgabe>()
             };
 
-            viewModel.neueListe = neueToDoListe;
-            fenster.DataContext = viewModel;
+            viewModel.neueListe = cache;
 
+            fenster.DataContext = viewModel;
             fenster.ShowDialog();
+        }
+
+        private void Button_ListeLoeschen(object sender, RoutedEventArgs e)
+        {
+            if(vm.SelectedToDoList != null)
+            {
+                vm.RemoveToDoList(vm.SelectedToDoList);
+                vm.AllToDoLists.Remove(vm.SelectedToDoList);
+            }
         }
 
 
