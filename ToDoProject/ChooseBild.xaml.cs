@@ -34,7 +34,6 @@ namespace ToDoProject
             cacheVM.neueListe.Bild = cacheVM.SelectedBild;
 
             this.Close();
-
         }
     }
 }

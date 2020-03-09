@@ -17,29 +17,52 @@ namespace ToDoProject.ViewModels
 
         public ToDoList SelectedToDoList { get; set; }
 
+        public String SelectedImage { get; set; }
+ 
+
         public void AddNewToDoList(ToDoList list)
         {
             ctx.ToDoListen.Add(list);
             ctx.SaveChanges();
-            // Werden hier auch automatisch die Aufgaben hinzugefügt?
         }
 
         public void RemoveToDoList(ToDoList list)
         {
+            /*
+             * How to delete the N-Part of the DB
+            foreach(Aufgabe aufgabe in list.Aufgaben)
+            {
+                RemoveAufgabe(aufgabe);
+            }
+            */
             ctx.ToDoListen.Remove(list);
             ctx.SaveChanges();
-            // Werden hier auch automatisch die Aufgaben gelöscht?
+        }
+    
+        public void AddAufgabe(Aufgabe erstellteAufgabe)
+        {
+            ctx.Aufgaben.Add(erstellteAufgabe);
+            ctx.SaveChanges();
         }
 
+        public void RemoveAufgabe(Aufgabe erstellteAufgabe)
+        {
+            ctx.Aufgaben.Remove(erstellteAufgabe);
+            ctx.SaveChanges();
+        }
+
+        public void Update()
+        {
+            ctx.SaveChanges();
+        }
         internal void FillData()
         {
             AllToDoLists = new ObservableCollection<ToDoList>();
-            foreach(var item in ctx.ToDoListen)
+            foreach (var item in ctx.ToDoListen)
             {
                 AllToDoLists.Add(item);
             }
 
-            // TODO: Check if needed
             AllAufgaben = new ObservableCollection<Aufgabe>();
             foreach (var item in ctx.Aufgaben.Include("ParentToDoList"))
             {

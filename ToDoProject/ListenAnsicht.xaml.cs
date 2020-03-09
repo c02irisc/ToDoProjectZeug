@@ -35,12 +35,73 @@ namespace ToDoProject
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            var thisViewModel = (ListenAnsichtViewModel)this.DataContext;
             NeuerTask fenster = new NeuerTask();
-           
+            NeuerTaskViewModel viewModel = new NeuerTaskViewModel();
+            viewModel.ToDoList = thisViewModel.aktuellesToDo;
+
+            fenster.DataContext = viewModel;
+
             fenster.ShowDialog();
-            var vm = (ListenAnsichtViewModel)this.DataContext;
-            vm.FillAufgabenliste();
 
         }
+        private void CheckBoxChanged(object sender, RoutedEventArgs e)
+        {
+            var vm = (MainWindowViewModel)Application.Current.MainWindow.DataContext;
+            vm.Update();
+            var thisViewModel = (ListenAnsichtViewModel)this.DataContext;
+            thisViewModel.updateCount();
+        }
+
+        private void Filter_Name(object sender, RoutedEventArgs e)
+        {
+            var thisViewModel = (ListenAnsichtViewModel)this.DataContext;
+            thisViewModel.FilterBy("Name");
+        }
+        private void Filter_Prio(object sender, RoutedEventArgs e)
+        {
+            var thisViewModel = (ListenAnsichtViewModel)this.DataContext;
+            thisViewModel.FilterBy("Prio");
+        }
+        private void Filter_Kategorie(object sender, RoutedEventArgs e)
+        {
+            var thisViewModel = (ListenAnsichtViewModel)this.DataContext;
+            thisViewModel.FilterBy("Kategorie");
+        }
+        private void Filter_Undone(object sender, RoutedEventArgs e)
+        {
+            var thisViewModel = (ListenAnsichtViewModel)this.DataContext;
+            thisViewModel.FilterBy("Undone");
+        }
+        private void Filter_Done(object sender, RoutedEventArgs e)
+        {
+            var thisViewModel = (ListenAnsichtViewModel)this.DataContext;
+            thisViewModel.FilterBy("Done");
+        }
+
+        private void Reload(object sender, RoutedEventArgs e)
+        {
+            var thisViewModel = (ListenAnsichtViewModel)this.DataContext;
+            var vm = (MainWindowViewModel)Application.Current.MainWindow.DataContext;
+            thisViewModel.AllAufgaben = vm.AllAufgaben;
+            thisViewModel.FillAufgabenliste();
+        }
+
+        private void Button_Click_Delete(object sender, RoutedEventArgs e)
+        {
+            /*
+            var vm = (MainWindowViewModel)Application.Current.MainWindow.DataContext;
+
+            var thisViewModel = (ListenAnsichtViewModel)this.DataContext;
+
+            if(thisViewModel.SelectedAufgabe != null)
+            {
+                vm.RemoveAufgabe(thisViewModel.SelectedAufgabe);
+                vm.AllAufgaben.Remove(thisViewModel.SelectedAufgabe);
+            }
+            */
+        }
+
+  
     }
 }

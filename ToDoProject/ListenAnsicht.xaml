@@ -21,33 +21,64 @@
                 <Border.BitmapEffect>
                     <DropShadowBitmapEffect Color="Black" Direction="270" ShadowDepth="1" Opacity="0.2" Softness="1" />
                 </Border.BitmapEffect>
-                <StackPanel Margin="10" VerticalAlignment="Center">
+                <StackPanel>
+                    <StackPanel Margin="10" VerticalAlignment="Center">
 
-                    <Grid Width="350px" Height="30px" TextElement.FontWeight="Black">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition Width="50px"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <StackPanel Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0">
-                            <TextBlock FontSize="18px" Foreground="#FF64BD94" Text="{Binding Statistic}"></TextBlock>
-                        </StackPanel>
+                        <Grid Width="350px" Height="30px" TextElement.FontWeight="Black">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="50px"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0">
+                                <TextBlock FontSize="18px" Foreground="#FF64BD94">
+                                      <Run Text="{Binding CountDone}"/>                      
+                                      <Run Text=" / "/>
+                                      <Run Text="{Binding CountAll}"/>
+                                </TextBlock>
+                            </StackPanel>
+                            <Button Click="Button_Click" Height="25px" Grid.Column="1" Grid.Row="0"  Background="#FF64BD94" TextElement.FontWeight="Black" TextElement.Foreground="white" FontSize="9">ADD</Button>
+                        </Grid>
+                    </StackPanel>
 
-                        <Button Click="Button_Click" Height="25px" Grid.Column="1" Grid.Row="0"  Background="#FF64BD94" TextElement.FontWeight="Black" TextElement.Foreground="white" FontSize="9">ADD</Button>
+                    <StackPanel Margin="10" VerticalAlignment="Center">
 
-                    </Grid>
+                        <Grid Width="350px" Height="20px" TextElement.FontWeight="Black">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60px"></ColumnDefinition>
+                                <ColumnDefinition Width="60px"></ColumnDefinition>
+                                <ColumnDefinition Width="60px"></ColumnDefinition>
+                                <ColumnDefinition Width="60px"></ColumnDefinition>
+                                <ColumnDefinition Width="60px"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
 
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Button Click="Filter_Name" Width="50px" Height="16px" Grid.Column="0" Grid.Row="0"  Background="#FF64BD94" TextElement.FontWeight="Black" TextElement.Foreground="white" FontSize="9">A-Z</Button>
+                            <Button Click="Filter_Prio" Width="50px" Height="16px" Grid.Column="1" Grid.Row="0"  Background="#FF64BD94" TextElement.FontWeight="Black" TextElement.Foreground="white" FontSize="9">PRIO</Button>
+                            <Button Click="Filter_Kategorie" Width="50px" Height="16px" Grid.Column="2" Grid.Row="0"  Background="#FF64BD94" TextElement.FontWeight="Black" TextElement.Foreground="white" FontSize="9">KAT.</Button>
+                            <Button Click="Filter_Done" Width="50px" Height="16px" Grid.Column="3" Grid.Row="0"  Background="#FF64BD94" TextElement.FontWeight="Black" TextElement.Foreground="white" FontSize="9">DONE</Button>
+                            <Button Click="Filter_Undone" Width="50px" Height="16px" Grid.Column="4" Grid.Row="0"  Background="#FF64BD94" TextElement.FontWeight="Black" TextElement.Foreground="white" FontSize="9">UNDONE</Button>
+                            <Button Click="Reload" Width="16px" Height="16px" Grid.Column="5" Grid.Row="0"  Background="#FF64BD94" TextElement.FontWeight="Black" TextElement.Foreground="white" FontSize="9">
+                                <StackPanel>
+                                    <Image Source="Icons/02.png" />
+                                </StackPanel>
+                            </Button>
+                        </Grid>
+                    </StackPanel>
                 </StackPanel>
             </Border>
 
             <ScrollViewer Width="437px" Height="275" VerticalScrollBarVisibility="Auto">
                 <StackPanel Margin="20px">
-                    <ListBox ItemsSource="{Binding aktuellesToDo.Aufgaben}" Width="400px" ScrollViewer.HorizontalScrollBarVisibility="Hidden" HorizontalAlignment="Center" BorderThickness="0">
+                    <ListBox ItemsSource="{Binding ResponsiveAufgabenListe}" SelectedItem="{Binding SelectedAufgabe}" Width="400px" ScrollViewer.HorizontalScrollBarVisibility="Hidden" HorizontalAlignment="Center" BorderThickness="0">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <CheckBox IsChecked="{Binding Done}" Margin="0,20,0,0" >
+                                <CheckBox  IsChecked="{Binding Done}" Checked="CheckBoxChanged" Unchecked="CheckBoxChanged" Margin="0,20,0,0" >
                                     <StackPanel Margin="10,-15,0,0" VerticalAlignment="Center">
                                         <GroupBox Header="{Binding Topic}" TextElement.FontSize="14px" TextElement.FontWeight="Bold" Foreground="#FF64BD94" Padding="3px" Margin="5px">
                                             <Grid TextElement.FontWeight="Black">
@@ -59,7 +90,7 @@
                                                     <RowDefinition></RowDefinition>
                                                 </Grid.RowDefinitions>
                                                 <TextBlock Text="{Binding Inhalt}" FontSize="12px" FontWeight="Normal" TextWrapping="Wrap" Grid.Column="0" Grid.Row="0" Padding="4px"></TextBlock>
-                                                <Image Height="20px" Grid.Column="1" Grid.Row="0" Source="Icons/04.png" Margin="0,-5,0,0"></Image>
+                                                <Image Height="20px" Grid.Column="1" Grid.Row="0" Source="{Binding Category}" Margin="0,-5,0,0"></Image>
                                             </Grid>
                                         </GroupBox>
                                     </StackPanel>
@@ -78,9 +109,9 @@
                 </Ellipse.Fill>
             </Ellipse>
             <StackPanel Width="140px" TextElement.Foreground="White">
-                <TextBlock Text="{Binding aktuellesToDo.Name}" HorizontalAlignment="Center" TextElement.FontWeight="Black" Padding="4px"></TextBlock>
+                <TextBlock Text="{Binding aktuellesToDo.Name}" TextWrapping="Wrap" HorizontalAlignment="Center" TextElement.FontWeight="Black" Padding="4px"></TextBlock>
             </StackPanel>
-            
+
         </StackPanel>
     </DockPanel>
 </Window>

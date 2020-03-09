@@ -14,31 +14,24 @@ namespace ToDoProject.ViewModels
 
         AufgabeContext ctx = new AufgabeContext();
         public List<string> ComboBoxKategorie { get; set; }
+        public String SelectedCategory { get; set; }
         public Aufgabe Aufgabe { get; set; }
         public ToDoList ToDoList { get; set; }
         public NeuerTaskViewModel()
         {
             Aufgabe = new Aufgabe()
             {
-                Topic = "Aufgabe",
+                Topic = "",
                 Prio = 0,
-                Category = "none"
+                Category = "Ohne Kategorie",
             };
-      
+
             ComboBoxKategorie = new List<string>() {
                 "Arbeit",
-                "Zuhause",
+                "Haushalt",
                 "Sport",
                 "Freizeit"
             };
-        }
-
-        internal void AddAufgabe(Aufgabe erstellteAufgabe)
-        {
-            ctx.Aufgaben.Add(erstellteAufgabe);
-           
-            ctx.SaveChanges();
-
         }
 
     }

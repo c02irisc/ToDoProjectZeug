@@ -42,14 +42,17 @@ namespace ToDoProject
             ListenAnsichtViewModel viewModel = new ListenAnsichtViewModel();
 
             // Ausgewählte Liste übergeben
-            viewModel.aktuellesToDo = vm.SelectedToDoList;
+            if (vm.SelectedToDoList != null)
+            {
+                viewModel.aktuellesToDo = vm.SelectedToDoList;
+                viewModel.AllAufgaben = vm.AllAufgaben;
+                fenster.DataContext = viewModel;
 
-            fenster.DataContext = viewModel;
+                // Befülle Liste
+                viewModel.FillAufgabenliste();
 
-            // TODO: Frage ob das hier notwendig ist?
-            viewModel.FillAufgabenliste();
-
-            fenster.ShowDialog();
+                fenster.ShowDialog();
+            }
         }
 
         private void Button_AlleListenAnsehen(object sender, RoutedEventArgs e)
@@ -72,6 +75,7 @@ namespace ToDoProject
             };
 
             viewModel.neueListe = cache;
+            viewModel.SelectedBild = cache.Bild;
 
             fenster.DataContext = viewModel;
             fenster.ShowDialog();

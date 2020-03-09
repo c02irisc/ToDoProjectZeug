@@ -22,37 +22,56 @@ namespace ToDoProject
     /// </summary>
     public partial class NeuerTask : Window
     {
-
-
-        public ToDoList aktuelleListe { get; set; }
-
         public NeuerTask()
         {
             InitializeComponent();
 
-            NeuerTaskViewModel vm = new NeuerTaskViewModel(); // ev aus CTOR?
-
-            this.DataContext = vm;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            var neuerTaskvm = (NeuerTaskViewModel)this.DataContext;
+            var vm = (MainWindowViewModel)Application.Current.MainWindow.DataContext;
 
-            var vm = (NeuerTaskViewModel)this.DataContext;
+            ToDoList cache = neuerTaskvm.ToDoList;
 
             Aufgabe erstellteAufgabe = new Aufgabe();
-                erstellteAufgabe.Topic = vm.Aufgabe.Topic;
-                erstellteAufgabe.Prio = vm.Aufgabe.Prio;
-                erstellteAufgabe.Inhalt = vm.Aufgabe.Inhalt;
-                erstellteAufgabe.Category = vm.Aufgabe.Category;
-                erstellteAufgabe.Done = false;
-                erstellteAufgabe.ParentToDoList = aktuelleListe;
-                 
+            erstellteAufgabe.Topic = neuerTaskvm.Aufgabe.Topic;
+            erstellteAufgabe.Prio = neuerTaskvm.Aufgabe.Prio;
+            erstellteAufgabe.Inhalt = neuerTaskvm.Aufgabe.Inhalt;
+            erstellteAufgabe.Category = neuerTaskvm.SelectedCategory;
+            if (neuerTaskvm.Aufgabe.Category != null)
+            {
+                Console.WriteLine(neuerTaskvm.Aufgabe.Category);
+
+                erstellteAufgabe.Category = DefineCategoryIcon(neuerTaskvm.Aufgabe.Category);
+            }
+            erstellteAufgabe.Category = neuerTaskvm.Aufgabe.Category;
+
+            erstellteAufgabe.Done = false;
+
+           if (neuerTaskvm.ToDoList != null)
+            {
+                erstellteAufgabe.ParentToDoList = neuerTaskvm.ToDoList;
+            }
+            neuerTaskvm.ToDoList.Aufgaben.Add(erstellteAufgabe);
             vm.AddAufgabe(erstellteAufgabe);
-         
+            vm.AllAufgaben.Add(erstellteAufgabe);
+
+            vm.Update();
 
             this.Close();
+        }
 
+        private String DefineCategoryIcon(String cat)
+        {
+            return "Test";
+        }
+
+        private void ComboBoxKategorie_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var neuerTaskvm = (NeuerTaskViewModel)this.DataContext;
+            neuerTaskvm.SelectedCategory = 
         }
     }
 }
