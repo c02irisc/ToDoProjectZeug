@@ -137,14 +137,19 @@ namespace ToDoProject.ViewModels
         internal void FillAufgabenliste()
         {
             Aufgaben = new ObservableCollection<Aufgabe>();
-            foreach (var item in AllAufgaben)
-            {
-                if (item.ParentToDoList == aktuellesToDo)
-                {
-                    Aufgaben.Add(item);
-                }
 
+            if (AllAufgaben != null)
+            {
+                foreach (var item in AllAufgaben)
+                {
+                    if (item.ParentToDoList == aktuellesToDo)
+                    {
+                        Aufgaben.Add(item);
+                    }
+
+                }
             }
+
             ResponsiveAufgabenListe = Aufgaben;
             updateCount();
         }

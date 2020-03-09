@@ -31,7 +31,7 @@
                         </StackPanel>
                         <TextBlock HorizontalAlignment="Center" TextElement.FontWeight="Black" Padding="4px">Kategorie wählen</TextBlock>
 
-                        <ComboBox Name="ComboBoxKategorien" Width="290px" Padding="4px" Margin="0,5,0,0" ItemsSource="{Binding ComboBoxKategorie}" SelectedItem="{Binding ComboBoxKategorie}" SelectionChanged="ComboBoxKategorie_SelectionChanged">
+                        <ComboBox Name="CBKate" Width="290px" Padding="4px" Margin="0,5,0,0" ItemsSource="{Binding ComboBoxKategorie}" SelectedIndex="0">
 
                         </ComboBox>
 

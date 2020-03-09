@@ -71,6 +71,7 @@
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\NeueListeViewModel.cs" />
     <Compile Include="ViewModels\NeuerTaskViewModel.cs" />
+    <Compile Include="ViewModels\RestApiViewModel.cs" />
     <Page Include="ListenAnsicht.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -178,6 +179,16 @@
     <Resource Include="Pics\07.png" />
     <Resource Include="Pics\08.png" />
     <Resource Include="Pics\09.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\Einkaufen.png" />
+    <Resource Include="Icons\Erinnerung.png" />
+    <Resource Include="Icons\Haushalt.png" />
+    <Resource Include="Icons\Idee.png" />
+    <Resource Include="Icons\Kontaktaufnahme.png" />
+    <Resource Include="Icons\Keine.png" />
+    <Resource Include="Icons\Sport.png" />
+    <Resource Include="Icons\Termin.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

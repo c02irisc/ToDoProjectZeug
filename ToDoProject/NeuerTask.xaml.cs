@@ -35,43 +35,28 @@ namespace ToDoProject
 
             ToDoList cache = neuerTaskvm.ToDoList;
 
-            Aufgabe erstellteAufgabe = new Aufgabe();
-            erstellteAufgabe.Topic = neuerTaskvm.Aufgabe.Topic;
-            erstellteAufgabe.Prio = neuerTaskvm.Aufgabe.Prio;
-            erstellteAufgabe.Inhalt = neuerTaskvm.Aufgabe.Inhalt;
-            erstellteAufgabe.Category = neuerTaskvm.SelectedCategory;
-            if (neuerTaskvm.Aufgabe.Category != null)
+            if (!neuerTaskvm.Aufgabe.Topic.Equals(""))
             {
-                Console.WriteLine(neuerTaskvm.Aufgabe.Category);
+                Aufgabe erstellteAufgabe = new Aufgabe();
+                erstellteAufgabe.Topic = neuerTaskvm.Aufgabe.Topic;
+                erstellteAufgabe.Prio = neuerTaskvm.Aufgabe.Prio;
+                erstellteAufgabe.Inhalt = neuerTaskvm.Aufgabe.Inhalt;
+                erstellteAufgabe.Category = "Icons/" + (string)CBKate.SelectedItem + ".png";
+                erstellteAufgabe.Done = false;
 
-                erstellteAufgabe.Category = DefineCategoryIcon(neuerTaskvm.Aufgabe.Category);
+                if (neuerTaskvm.ToDoList != null)
+                {
+                    erstellteAufgabe.ParentToDoList = neuerTaskvm.ToDoList;
+                }
+                neuerTaskvm.ToDoList.Aufgaben.Add(erstellteAufgabe);
+                vm.AddAufgabe(erstellteAufgabe);
+                vm.AllAufgaben.Add(erstellteAufgabe);
+
+                vm.Update();
+                this.Close();
             }
-            erstellteAufgabe.Category = neuerTaskvm.Aufgabe.Category;
-
-            erstellteAufgabe.Done = false;
-
-           if (neuerTaskvm.ToDoList != null)
-            {
-                erstellteAufgabe.ParentToDoList = neuerTaskvm.ToDoList;
-            }
-            neuerTaskvm.ToDoList.Aufgaben.Add(erstellteAufgabe);
-            vm.AddAufgabe(erstellteAufgabe);
-            vm.AllAufgaben.Add(erstellteAufgabe);
-
-            vm.Update();
-
-            this.Close();
         }
 
-        private String DefineCategoryIcon(String cat)
-        {
-            return "Test";
-        }
-
-        private void ComboBoxKategorie_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var neuerTaskvm = (NeuerTaskViewModel)this.DataContext;
-            neuerTaskvm.SelectedCategory = 
-        }
+        
     }
 }

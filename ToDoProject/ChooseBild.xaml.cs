@@ -35,5 +35,21 @@ namespace ToDoProject
 
             this.Close();
         }
+
+        private void Button_BildFromApiSpeichern(object sender, RoutedEventArgs e)
+        {
+
+            var cacheVM = (NeueListeViewModel)this.DataContext;
+
+            RestApiViewModel rest = new RestApiViewModel();
+            cacheVM.SelectedBild  = rest.GeladenesBild;
+            cacheVM.neueListe.Bild = rest.GeladenesBild;
+
+           // String link = "https://i.picsum.photos/id/211/200/300.jpg"; 
+           // cacheVM.SelectedBild = link;
+          //  cacheVM.neueListe.Bild = link;
+
+            this.Close();
+        }
     }
 }

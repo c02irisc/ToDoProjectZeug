@@ -23,14 +23,19 @@ namespace ToDoProject.ViewModels
             {
                 Topic = "",
                 Prio = 0,
-                Category = "Ohne Kategorie",
+                Category = "Keine",
             };
 
             ComboBoxKategorie = new List<string>() {
-                "Arbeit",
+                "Keine",
+                "Einkaufen",
+                "Erinnerung",
                 "Haushalt",
+                "Idee",
+                "Kontaktaufnahme",
                 "Sport",
-                "Freizeit"
+                "Termin",
+                "Keine"
             };
         }
 
