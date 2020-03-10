@@ -12,6 +12,9 @@ namespace ToDoProject.ViewModels
     {
         ToDoListContext ctx = new ToDoListContext();
 
+        AufgabeContext actx = new AufgabeContext();
+
+
         public ObservableCollection<ToDoList> AllToDoLists { get; set; }
         public ObservableCollection<Aufgabe> AllAufgaben { get; set; }
 
@@ -28,13 +31,21 @@ namespace ToDoProject.ViewModels
 
         public void RemoveToDoList(ToDoList list)
         {
-            /*
-             * How to delete the N-Part of the DB
-            foreach(Aufgabe aufgabe in list.Aufgaben)
+            List<Aufgabe> cacheList = new List<Aufgabe>(AllAufgaben);
+            foreach (var item in AllAufgaben)
             {
-                RemoveAufgabe(aufgabe);
+                if (item.ParentToDoList == list)
+                {
+                    RemoveAufgabe(item);
+                    cacheList.Remove(item);
+                }
             }
-            */
+            AllAufgaben.Clear();
+            foreach(var item in cacheList)
+            {
+                AllAufgaben.Add(item);
+            }
+                        
             ctx.ToDoListen.Remove(list);
             ctx.SaveChanges();
         }

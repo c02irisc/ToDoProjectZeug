@@ -21,24 +21,24 @@ namespace ToDoProject.ViewModels
 
         public String GetPicture()
         {
-            /*
-            String resultBild = "";
-
+            
+            String resultBild = "hallo";
+            
             HttpClient client = new HttpClient();
-            string path = "https://picsum.photos/id/237/200/300";
+            string path = "https://picsum.photos/id/0/info";
 
             HttpResponseMessage response = client.GetAsync(path).Result;
 
             if (response.IsSuccessStatusCode)
             {
+                Console.WriteLine(response);
                 var stringcontent = response.Content.ReadAsStringAsync().Result;
                 Console.WriteLine(stringcontent);
             }
 
-
+            
             return resultBild;
-            */
-            return "Hallo";
+           
 
         }
 
