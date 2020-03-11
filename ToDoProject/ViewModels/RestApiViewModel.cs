@@ -34,6 +34,7 @@ namespace ToDoProject.ViewModels
                 Console.WriteLine(response);
                 var stringcontent = response.Content.ReadAsStringAsync().Result;
                 Console.WriteLine(stringcontent);
+                Console.WriteLine("Test");
             }
 
             
