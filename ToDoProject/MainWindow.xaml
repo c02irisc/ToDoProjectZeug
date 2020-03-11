@@ -12,14 +12,6 @@
         </StatusBar>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
-                <MenuItem Header="Alle Listen ansehen" Click="Button_AlleListenAnsehen">
-                    <MenuItem.Icon>
-                        <Image Source="Icons/03.png" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem Header="_Exit" />
-            </MenuItem>
-            <MenuItem Header="_Tools">
                 <MenuItem Header="Neue Liste anlegen" Click="Button_NeueListeAnlegen">
                     <MenuItem.Icon>
                         <Image Source="Icons/00.png" />

@@ -9,7 +9,7 @@ using ToDoProject.Models;
 
 namespace ToDoProject.ViewModels
 {
-    class ListenAnsichtViewModel : INotifyPropertyChanged
+    public class ListenAnsichtViewModel : INotifyPropertyChanged
     {
         ToDoListContext ctx = new ToDoListContext();
 
@@ -68,7 +68,7 @@ namespace ToDoProject.ViewModels
                 if (PropertyChanged != null)
                 {
                     PropertyChanged(this, new PropertyChangedEventArgs("ResponsiveAufgabenListe"));
-                   
+
                 }
             }
         }

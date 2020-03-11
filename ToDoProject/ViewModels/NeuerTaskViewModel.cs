@@ -9,10 +9,8 @@ using ToDoProject.Models;
 namespace ToDoProject.ViewModels
 {
 
-    class NeuerTaskViewModel
+    public class NeuerTaskViewModel
     {
-
-        AufgabeContext ctx = new AufgabeContext();
         public List<string> ComboBoxKategorie { get; set; }
         public String SelectedCategory { get; set; }
         public Aufgabe Aufgabe { get; set; }

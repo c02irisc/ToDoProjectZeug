@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ToDoProject.ViewModels
 {
-    class ChooseBildViewModel
+    public class ChooseBildViewModel
     {
 
         // unused Class

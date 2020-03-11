@@ -24,14 +24,6 @@ namespace ToDoProject
         public ListenAnsicht()
         {
             InitializeComponent();
-
-            /*
-            ListenAnsichtViewModel vm = new ListenAnsichtViewModel();
-                        
-            vm.FillAufgabenliste();
-
-            this.DataContext = vm;
-            */
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -89,17 +81,7 @@ namespace ToDoProject
 
         private void Button_Click_Delete(object sender, RoutedEventArgs e)
         {
-            /*
-            var vm = (MainWindowViewModel)Application.Current.MainWindow.DataContext;
 
-            var thisViewModel = (ListenAnsichtViewModel)this.DataContext;
-
-            if(thisViewModel.SelectedAufgabe != null)
-            {
-                vm.RemoveAufgabe(thisViewModel.SelectedAufgabe);
-                vm.AllAufgaben.Remove(thisViewModel.SelectedAufgabe);
-            }
-            */
         }
 
   

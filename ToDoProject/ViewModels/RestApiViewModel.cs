@@ -9,11 +9,11 @@ using static ToDoProject.Models.ImageAPI;
 
 namespace ToDoProject.ViewModels
 {
-    class RestApiViewModel
+    public class RestApiViewModel
     {
 
         public String GeladenesBild { get; set; }
-        
+
         public RestApiViewModel()
         {
             GeladenesBild = GetPicture();
@@ -32,7 +32,7 @@ namespace ToDoProject.ViewModels
             {
                 var stringcontent = response.Content.ReadAsStringAsync().Result;
                 List<RootObject> pictures = Newtonsoft.Json.JsonConvert.DeserializeObject<List<RootObject>>(stringcontent);
-                
+
                 Random random = new Random();
                 int p = random.Next(0, pictures.Count);
 

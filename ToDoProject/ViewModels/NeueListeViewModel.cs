@@ -8,7 +8,7 @@ using ToDoProject.Models;
 
 namespace ToDoProject.ViewModels
 {
-    class NeueListeViewModel : INotifyPropertyChanged
+    public class NeueListeViewModel : INotifyPropertyChanged
     {
 
         public event PropertyChangedEventHandler PropertyChanged;

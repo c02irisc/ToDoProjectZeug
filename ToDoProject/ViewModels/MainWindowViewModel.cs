@@ -8,12 +8,9 @@ using ToDoProject.Models;
 
 namespace ToDoProject.ViewModels
 {
-    class MainWindowViewModel
+    public class MainWindowViewModel
     {
         ToDoListContext ctx = new ToDoListContext();
-
-        AufgabeContext actx = new AufgabeContext();
-
 
         public ObservableCollection<ToDoList> AllToDoLists { get; set; }
         public ObservableCollection<Aufgabe> AllAufgaben { get; set; }
