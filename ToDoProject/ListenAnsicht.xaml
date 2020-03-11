@@ -73,9 +73,9 @@
                 </StackPanel>
             </Border>
 
-            <ScrollViewer Width="437px" Height="275" VerticalScrollBarVisibility="Auto">
+            <ScrollViewer Width="440px" Height="275" VerticalScrollBarVisibility="Visible">
                 <StackPanel Margin="20px">
-                    <ListBox ItemsSource="{Binding ResponsiveAufgabenListe}" SelectedItem="{Binding SelectedAufgabe}" Width="400px" ScrollViewer.HorizontalScrollBarVisibility="Hidden" HorizontalAlignment="Center" BorderThickness="0">
+                    <ListBox ItemsSource="{Binding ResponsiveAufgabenListe}" SelectedItem="{Binding SelectedAufgabe}" Width="390px" ScrollViewer.HorizontalScrollBarVisibility="Hidden" HorizontalAlignment="Center" BorderThickness="0">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <CheckBox  IsChecked="{Binding Done}" Checked="CheckBoxChanged" Unchecked="CheckBoxChanged" Margin="0,20,0,0" >

@@ -114,7 +114,7 @@ namespace ToDoProject.ViewModels
 
             if (filter == "Prio")
             {
-                ResponsiveAufgabenListe = new ObservableCollection<Aufgabe>(Aufgaben.OrderBy(x => x.Prio));
+                ResponsiveAufgabenListe = new ObservableCollection<Aufgabe>(Aufgaben.OrderByDescending(x => x.Prio));
             }
             else if (filter == "Kategorie")
             {
